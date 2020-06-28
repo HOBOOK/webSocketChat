@@ -15,45 +15,45 @@ app.controller("chatController", function ($scope, $http) {
     $scope.rooms = [{
         id: "1",
         title: "제목",
-        category:["#example","#example2"],
+        category:["#태그1","#태그2"],
         img: "/img/test.png",
         max: 10,
-        member: 3
+        member: 0
     },{
         id: "2",
         title: "제목2",
-        category:["#example","#example2"],
+        category:["#태그1","#태그2"],
         img: "/img/test.png",
         max: 10,
-        member: 3
+        member: 0
     },{
         id: "3",
         title: "제목3",
-        category:["#example","#example2"],
+        category:["#태그1","#태그2"],
         img: "/img/test.png",
         max: 10,
-        member: 3
+        member: 0
     },{
         id: "4",
-        title: "제목3",
-        category:["#example","#example2"],
+        title: "제목4",
+        category:["#태그1","#태그2"],
         img: "/img/test.png",
         max: 10,
-        member: 3
+        member: 0
     },{
         id: "5",
-        title: "제목3",
-        category:["#example","#example2"],
+        title: "제목5",
+        category:["#태그1","#태그2"],
         img: "/img/test.png",
         max: 10,
-        member: 3
+        member: 0
     },{
         id: "6",
-        title: "제목3",
-        category:["#example","#example2"],
+        title: "제목6",
+        category:["#태그1","#태그2"],
         img: "/img/test.png",
         max: 10,
-        member: 3
+        member: 0
     }];
     $scope.connect = function ($event, room) {
         connect($event, room);
@@ -73,7 +73,7 @@ var colors = [
 
 function connect(event, room) {
     //username = document.querySelector('#name').value.trim();
-    username = '박경호';
+    username = Math.random().toString(36).substr(2, 5);
     if(username) {
         disConnect();
         currentRoom = room;

@@ -26,10 +26,16 @@
             </div>
             <div id="chat-room-container">
                 <div id="chat-room" ng-repeat="room in rooms" ng-click="connect($event, room)">
-                    <h4>{{room.title}}</h4>
-                    <span>({{room.member}} / {{room.max}})</span>
-                    <p ng-repeat="category in room.category">{{category}}</p>
-                    <img ng-src="{{room.img}}" alt="thumbnail"/>
+                    <img ng-src="img/thumbnail.jpg" alt="thumbnail"/>
+                    <span id="chat-room-info">
+                        <p>{{room.title}}</p>
+                        <span>({{room.member}} / {{room.max}})</span>
+                    </span>
+
+                    <div class="chat-room-detail">
+                        <span ng-repeat="category in room.category">{{category}}</span>
+                        <p>입장하기</p>
+                    </div>
                 </div>
             </div>
         </div>
