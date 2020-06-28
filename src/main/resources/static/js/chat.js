@@ -142,40 +142,43 @@ function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
 
     var messageElement = document.createElement('li');
+    var messageCoverElement = document.createElement('span');
 
     if(message.type === 'JOIN') {
+        messageCoverElement.classList.add('event-message-cover');
         messageElement.classList.add('event-message');
         message.content = message.content +' 방에 ' + message.sender + ' 님이 입장하였습니다.';
     } else if (message.type === 'LEAVE') {
+        messageCoverElement.classList.add('event-message-cover');
         messageElement.classList.add('event-message');
         message.content = message.sender + ' 님이 나갔습니다.';
     } else {
+        messageCoverElement.classList.add('chat-message-cover');
+        messageElement.classList.add('chat-message');
         if(message.sender === username){
-            messageElement.classList.add('chat-message');
+            messageCoverElement.classList.add('me');
             messageElement.classList.add('me');
-        }else{
-            messageElement.classList.add('chat-message');
         }
-
-
         var avatarElement = document.createElement('i');
         var avatarText = document.createTextNode(message.sender[0]);
         avatarElement.appendChild(avatarText);
         avatarElement.style['background-color'] = getAvatarColor(message.sender);
 
-        messageElement.appendChild(avatarElement);
+        messageCoverElement.appendChild(avatarElement);
 
         var usernameElement = document.createElement('span');
         var usernameText = document.createTextNode(message.sender);
         usernameElement.appendChild(usernameText);
-        messageElement.appendChild(usernameElement);
+        messageCoverElement.appendChild(usernameElement);
     }
 
     var textElement = document.createElement('p');
     var messageText = document.createTextNode(message.content);
     textElement.appendChild(messageText);
 
-    messageElement.appendChild(textElement);
+    messageCoverElement.appendChild(textElement);
+
+    messageElement.appendChild(messageCoverElement);
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
