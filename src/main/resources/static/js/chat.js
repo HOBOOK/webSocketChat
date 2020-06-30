@@ -9,47 +9,78 @@ var chatPage = document.querySelector('#chat-page');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
+var chatMenu = document.querySelector('#chat-menu');
 
 app.controller("chatController", function ($scope, $http) {
     $scope.rooms = [];
     $scope.rooms = [{
         id: "1",
+        type: 0,
         title: "제목",
+        description: "채팅방 들어오세요~",
         category:["#태그1","#태그2"],
         img: "/img/test.png",
         max: 10,
         member: 0
     },{
         id: "2",
+        type: 1,
         title: "제목2",
+        description: "채팅방 들어오세요~",
         category:["#태그1","#태그2"],
         img: "/img/test.png",
         max: 10,
         member: 0
     },{
         id: "3",
+        type: 0,
         title: "제목3",
+        description: "채팅방 들어오세요~",
         category:["#태그1","#태그2"],
         img: "/img/test.png",
         max: 10,
         member: 0
     },{
         id: "4",
+        type: 1,
         title: "제목4",
+        description: "채팅방 들어오세요~",
         category:["#태그1","#태그2"],
         img: "/img/test.png",
         max: 10,
         member: 0
     },{
         id: "5",
+        type: 0,
         title: "제목5",
+        description: "채팅방 들어오세요~",
         category:["#태그1","#태그2"],
         img: "/img/test.png",
         max: 10,
         member: 0
     },{
         id: "6",
+        type: 1,
         title: "제목6",
+        description: "채팅방 들어오세요~",
+        category:["#태그1","#태그2"],
+        img: "/img/test.png",
+        max: 10,
+        member: 0
+    },{
+        id: "7",
+        type: 0,
+        title: "제목7",
+        description: "채팅방 들어오세요~",
+        category:["#태그1","#태그2"],
+        img: "/img/test.png",
+        max: 10,
+        member: 0
+    },{
+        id: "8",
+        type: 1,
+        title: "제목8",
+        description: "채팅방 들어오세요~",
         category:["#태그1","#태그2"],
         img: "/img/test.png",
         max: 10,
@@ -62,6 +93,15 @@ app.controller("chatController", function ($scope, $http) {
 
     $scope.sendMessage = function ($event) {
         sendMessage($event);
+    };
+
+    $scope.onClickToggleMenu = function () {
+        var display = chatMenu.style.display;
+        if(display === 'none' || display ===''){
+            chatMenu.style.display = 'inline-block';
+        }else{
+            chatMenu.style.display = 'none';
+        }
     };
 });
 

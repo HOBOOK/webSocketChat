@@ -11,7 +11,9 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
     <script src="https://cdn.rawgit.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-tpls-2.5.0.js"></script>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css">
     <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/input.css"/>
 </head>
 <body>
     <div class="wrapper" ng-app="chatApp" ng-controller="chatController">
@@ -20,23 +22,33 @@
 
         </nav>
 
-        <div id="chat-rooms-container">
-            <div>
-                <h3>채팅방</h3>
+        <div class="chat-sidebar-container">
+            <div class="chat-sidebar-header">
+                <h3>오픈 채팅방</h3>
+
+                <div id="chat-room-search">
+                    <input class="input-search" type="text" placeholder="방 검색..."/>
+                    <div id="chat-room-tags">
+                        <span>인기 태그</span>
+                        <a>#tag1</a>
+                    </div>
+                </div>
             </div>
-            <div id="chat-room-container">
-                <div id="chat-room" ng-repeat="room in rooms" ng-click="connect($event, room)">
+            <div class="chat-sidebar-content-container">
+                <div id="chat-room" class="chat-sidebar-content" ng-repeat="room in rooms" ng-click="connect($event, room)">
                     <img ng-src="img/thumbnail.jpg" alt="thumbnail"/>
                     <span id="chat-room-info">
-                        <p>{{room.title}}</p>
-                        <span>({{room.member}} / {{room.max}})</span>
+                        <h5>{{room.title}}</h5><span> ({{room.member}} / {{room.max}})</span>
+                        <p>{{room.description}}</p>
                     </span>
 
                     <div class="chat-room-detail">
-                        <span ng-repeat="category in room.category">{{category}}</span>
                         <p>입장하기</p>
                     </div>
                 </div>
+            </div>
+            <div class="chat-sidebar-footer">
+
             </div>
         </div>
 
@@ -44,7 +56,17 @@
             <div id="chat-page" class="hidden">
                 <div class="chat-container">
                     <div class="chat-header">
-                        <h2>{{currentRoom.title}}</h2>
+                        <img src="/img/thumbnail.png"/>
+                        <div class="chat-header-info">
+                            <h2>{{currentRoom.title}}</h2>
+                            <p>{{currentRoom.description}}</p>
+                        </div>
+
+                        <div class="chat-header-menu">
+                            <span ng-click="onClickToggleMenu()">
+                                <i class="fas fa-bars"></i>
+                            </span>
+                        </div>
                     </div>
                     <div class="connecting">
                         연결중...
@@ -56,11 +78,50 @@
                         <div class="form-group">
                             <div class="input-group clearfix">
                                 <input type="text" id="message" placeholder="메시지 입력..." autocomplete="off" class="form-control"/>
-                                <button type="submit" ng-click="sendMessage($event)" class="primary">보내기</button>
+
+                                <div class="form-buttons">
+                                    <button type="submit" ng-click="sendMessage($event)" class="send-message">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+
+        <div class="chat-sidebar-container" id="chat-menu">
+            <div class="chat-sidebar-header">
+                <h3>채팅방 정보</h3>
+            </div>
+            <div class="chat-sidebar-content-container">
+                <div class="chat-sidebar-content" id="chat-profile">
+                    <img src="/img/thumbnail.png"/>
+                    <h4>사용자 닉네임</h4>
+                </div>
+                <div class="chat-sidebar-content" id="chat-user-info">
+                    <h6>참여자 정보</h6>
+                    <ul class="chat-user-profile">
+                        <li>
+                            <img src="/img/thumbnail.png"/>
+                            <span>참여자 닉네임</span>
+                        </li>
+                        <li>
+                            <img src="/img/thumbnail.png"/>
+                            <span>참여자 닉네임</span>
+                        </li>
+                        <li>
+                            <img src="/img/thumbnail.png"/>
+                            <span>참여자 닉네임</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="chat-sidebar-footer">
+                <span class="chat-sidebar-footer-buttons">
+                    <i class="fas fa-door-open"></i>
+                </span>
             </div>
         </div>
 
