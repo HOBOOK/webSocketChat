@@ -103,17 +103,9 @@
                 <div class="chat-sidebar-content" id="chat-user-info">
                     <h6>참여자 정보</h6>
                     <ul class="chat-user-profile">
-                        <li>
+                        <li ng-repeat="participant in chatRoom.users">
                             <img src="/img/thumbnail.png"/>
-                            <span>참여자 닉네임</span>
-                        </li>
-                        <li>
-                            <img src="/img/thumbnail.png"/>
-                            <span>참여자 닉네임</span>
-                        </li>
-                        <li>
-                            <img src="/img/thumbnail.png"/>
-                            <span>참여자 닉네임</span>
+                            <span>participant.name</span>
                         </li>
                     </ul>
                 </div>
